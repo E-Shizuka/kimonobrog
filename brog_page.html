@@ -37,6 +37,9 @@
       </div>
       <!--送信結果をリスト表示-->
       <div id="output"></div>
+
+      <!-- <button id="test">test</button>
+      <div id="previewImage"></div> -->
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -92,14 +95,17 @@
       //送信処理
       $("#send").on("click", function () {
         const fileInput = document.getElementById("picture");
+        let fileName;
         if (fileInput.files.length > 0) {
           const file = fileInput.files[0];
-          const spaceRef = ref(storage, `${file.name}`);
+          fileName = file.name;
+          const spaceRef = ref(storage, fileName);
+          console.log(spaceRef);
           uploadBytes(spaceRef, file).then((snapshot) => {
-            console.log("Uploaded a blob or file!");
-            getDownloadURL(spaceRef).then((url) => {
-              console.log(url);
-            });
+            console.log("Uploaded a or file!");
+            // getDownloadURL(spaceRef).then((url) => {
+            //   console.log(url);
+            // });
           });
         }
 
@@ -107,16 +113,34 @@
           name: $("#name").val(),
           text: $("#text").val(),
           time: serverTimestamp(),
+          fileName: fileName,
         };
         addDoc(collection(db, "post"), postData);
         $("#name").val("");
         $("#picture").val("");
         $("#text").val("");
-        console.log(file);
       });
+
+      // $("#test").on("click", () => {
+      //   const testImage = ref(storage, "kimono.jpg");
+      //   getDownloadURL(testImage).then((url) => {
+      //     console.log(url);
+      //     $("#previewImage").append(
+      //       `
+      //             <img src="${url}" />
+      //             `
+      //     );
+      //   });
+      // });
 
       // データを取り出す条件
       const q = query(collection(db, "post"), orderBy("time", "desc"));
+      async function getImageUrlFromStorage(fileName) {
+        const Image = ref(storage, fileName);
+        const url = await getDownloadURL(Image);
+        console.log(url);
+        return url;
+      }
 
       onSnapshot(q, async (querySnapshot) => {
         // ここから下は毎回同じ処理
@@ -129,15 +153,13 @@
           };
           documents.push(document);
           console.log(document.data);
+          // async function getImageUrlFromStorage(fileName) {
+          //   const Image = ref(storage, `data.fileName`);
+          //   getDownloadURL(Image).then((url) => {
+          //     console.log(url);
+          //   });
+          // }
         });
-
-        // ストレージから画像のダウンロードURLを取得する関数
-        async function getImageUrlFromStorage(fileName) {
-          const spaceRef = ref(storage, fileName); // ファイルのパスを指定
-          const url = await getDownloadURL(spaceRef);
-          console.log(url);
-          return url;
-        }
 
         // 確認用
         console.log(documents);
@@ -153,13 +175,13 @@
           const url = await getImageUrlFromStorage(fileName);
           const imageElement = `<img src="${url}" alt="image"/>`;
           htmlElements.push(`
-        <li id="${document.id}">
-          <p>${document.data.name}</p>
-          <p>${timeStr}</p>
-          ${imageElement}
-          <p>${document.data.text}</p>
-        </li>
-      `);
+                <li id="${document.id}">
+                  <p>${document.data.name}</p>
+                  <p>${timeStr}</p>
+                  ${imageElement}
+                  <p>${document.data.text}</p>
+                </li>
+                `);
         }
         $("#output").html(htmlElements);
       });
