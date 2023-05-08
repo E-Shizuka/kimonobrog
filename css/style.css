@@ -109,6 +109,7 @@ textarea {
 
 #reload {
   align-self: flex-end;
+  font-size: 1.4em;
 }
 
 #output {
@@ -171,11 +172,12 @@ textarea {
   justify-content: center;
   align-items: center;
   padding: 8px;
+  height: auto;
 }
 
 .pictureArea {
   width: 50%;
-  height: 0;
+  height: auto;
   padding-bottom: 50%; /* アスペクト比を 2:1 にする場合 */
   position: relative;
 }
@@ -208,54 +210,6 @@ button {
   border-radius: 3px;
   font-size: 1.5em;
   width: auto;
-}
-
-.btn1 li {
-  padding: 8px;
-  margin: 8px;
-  /* background-color: rgb(212, 48, 65); */
-  background-color: #d43041;
-  color: white;
-  border-radius: 3px;
-  font-size: 1.5em;
-  width: auto;
-}
-
-.btn2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 64px;
-  padding-left: 256px;
-  padding-right: 256px;
-}
-
-.btn2 li {
-  padding: 8px;
-  margin: 8px;
-  /* background-color: rgb(212, 48, 65); */
-  background-color: #d43041;
-  color: white;
-  border-radius: 3px;
-  font-size: 1.5em;
-  flex: 1;
-  width: auto;
-}
-
-.btn li:active {
-  -webkit-transform: translateY(4px);
-  transform: translateY(4px);
-  border-bottom: none;
-}
-
-.question-area {
-  display: none;
-  /* display: flex; */
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: auto;
-  padding: 56px;
 }
 
 /*どの部分のcssに対して
