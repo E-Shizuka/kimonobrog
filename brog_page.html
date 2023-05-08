@@ -22,6 +22,8 @@
   </head>
 
   <body>
+    <h2>写真日記</h2>
+    <p>つれづれなるままにあなたの日常を投稿しましょう！</p>
     <div>
       <!--投稿者-->
       <div>名前：<input type="text" id="name" /></div>
@@ -175,13 +177,21 @@
           const url = await getImageUrlFromStorage(fileName);
           const imageElement = `<img src="${url}" alt="image"/>`;
           htmlElements.push(`
-                <li id="${document.id}">
-                  <p>${document.data.name}</p>
-                  <p>${timeStr}</p>
-                  ${imageElement}
-                  <p>${document.data.text}</p>
-                </li>
-                `);
+          <div class="blogBox" id="${document.id}">
+                  <div class="titleArea">
+                    <p>投稿者　${document.data.name}　さん</p>
+                    <p>　${timeStr}</p>
+                    </div>
+                    <div class="contentArea">
+                    <div class="pictureArea">
+                    ${imageElement}
+                    </div>
+                    <div class="textDataArea">
+                    <p>${document.data.text}</p>
+                    </div>
+                  </div>
+          </div>
+           `);
         }
         $("#output").html(htmlElements);
       });
