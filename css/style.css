@@ -44,14 +44,79 @@ textarea {
 /*この下から記述*/
 /*ーーーーーーーーーーー*/
 
+.titleBox {
+  text-align: center;
+  font-size: 2em;
+  background: url(../img/keshiki-5.jpg);
+  background-size: cover;
+}
+
+.inputArea {
+  background-color: rgb(253, 240, 232);
+}
+
+.toko-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toko-1-1 {
+  padding: 8px;
+}
+
+.toko-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: auto;
+}
+
+.toko-2-1 {
+  padding: 8px;
+}
+
+#name {
+  border: solid 1px black;
+  border-radius: 3px;
+}
+
+#text {
+  min-width: 50vw;
+  border: solid 1px black;
+  border-radius: 3px;
+}
+
+.info-t {
+  padding-top: 24px;
+  padding-left: 24px;
+  font-size: 1.2em;
+}
+
+.infoArea {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-right: 24px;
+}
+
+.info-p {
+  font-size: 0.8em;
+  text-align: left;
+}
+
+#reload {
+  align-self: flex-end;
+}
+
 #output {
   display: flex;
   flex-wrap: wrap; /*折返し指定*/
   justify-content: center;
   align-items: center;
-  padding-top: 24px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 24px;
   /* background-color: rgb(231, 252, 243); */
   width: 100vw;
 }
@@ -64,6 +129,23 @@ textarea {
   flex-direction: column;
   padding: 16px 8px;
   background-color: rgb(219, 215, 205);
+}
+
+.blogBox:hover {
+  transform: scale(1.05);
+  transition: 0.5s all;
+  z-index: 1000;
+  top: -10px;
+  background-color: rgb(253, 240, 232);
+}
+
+.blogBox:nth-child(4n-3):hover,
+.blogBox:nth-child(4n-4):hover {
+  transform: scale(1.05);
+  transition: 0.5s all;
+  z-index: 1000;
+  top: -10px;
+  background-color: rgb(253, 240, 232);
 }
 
 /* チェック模様になるように配色 */
@@ -115,19 +197,17 @@ textarea {
   padding-left: 16px;
 }
 
-.title-t {
-  text-align: center;
-  background-color: #d43041;
-  color: white;
+#docDateText {
+  white-space: pre-wrap;
+  /* ユーザーの改行位置を再現するためのコード */
 }
 
-.btn1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 64px;
-  padding-left: 64px;
-  padding-right: 64px;
+button {
+  background-color: #d43041;
+  color: white;
+  border-radius: 3px;
+  font-size: 1.5em;
+  width: auto;
 }
 
 .btn1 li {
